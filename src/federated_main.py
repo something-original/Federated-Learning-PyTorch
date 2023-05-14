@@ -41,9 +41,9 @@ if __name__ == '__main__':
         if args.dataset == 'mnist':
             global_model = CNNMnist(args=args)
         elif args.dataset == 'fmnist':
-            global_model = CNNFashion_Mnist(args=args)
+            global_model = CNNMnist(args=args)
         elif args.dataset == 'cifar':
-            global_model = CNNCifar(args=args)
+            global_model = CNNMnist(args=args)
 
     elif args.model == 'mlp':
         # Multi-layer perceptron
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     print("|---- Test Accuracy: {:.2f}%".format(100 * test_acc))
 
     # Saving the objects train_loss and train_accuracy:
-    file_name = '../save/objects/{}_{}_{}_C[{}]_iid[{}]_E[{}]_B[{}].pkl'. \
+    file_name = 'save/objects/{}_{}_{}_C[{}]_iid[{}]_E[{}]_B[{}].pkl'. \
         format(args.dataset, args.model, args.epochs, args.frac, args.iid,
                args.local_ep, args.local_bs)
 

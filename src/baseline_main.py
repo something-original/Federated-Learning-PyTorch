@@ -26,15 +26,15 @@ if __name__ == '__main__':
 
     # BUILD MODEL
     if args.model == 'cnn':
-        # Convolutional neural netork
+        # Convolutional neural network
         if args.dataset == 'mnist':
             global_model = CNNMnist(args=args)
         elif args.dataset == 'fmnist':
-            global_model = CNNFashion_Mnist(args=args)
+            global_model = CNNMnist(args=args)
         elif args.dataset == 'cifar':
-            global_model = CNNCifar(args=args)
+            global_model = CNNMnist(args=args)
     elif args.model == 'mlp':
-        # Multi-layer preceptron
+        # Multi-layer perceptron
         img_size = train_dataset[0][0].shape
         len_in = 1
         for x in img_size:
@@ -57,6 +57,8 @@ if __name__ == '__main__':
     elif args.optimizer == 'adam':
         optimizer = torch.optim.Adam(global_model.parameters(), lr=args.lr,
                                      weight_decay=1e-4)
+    elif args.optimizer == 'adamax':
+        optimizer = torch.optim.adamax(global_model.parameters(), lr=args.lr)
     #adamax
     trainloader = DataLoader(train_dataset, batch_size=64, shuffle=True)
     criterion = torch.nn.NLLLoss().to(device)
